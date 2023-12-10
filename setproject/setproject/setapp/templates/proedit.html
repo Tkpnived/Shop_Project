@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+{% extends 'index.html' %}
+{% block content %}
+
+
+
+<div class="col-sm-12 col-xl-6" style="margin-left:200px;margin-top:100px;width:900px;">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Basic Form</h6>
+                            <form method="post" action="{% url 'update_pro' dataid=data.id %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+
+
+                                <select name="CategoryName" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" fdprocessedid="2c92e5">
+                                <option>Category</option>
+                                    {% for i in cat_data %}
+                                <option>{{i.CategoryName}}</option>
+                                    {% endfor %}
+
+                            </select>
+
+
+
+                                <div class="mb-3">
+                                    <label class="form-label">ProductName</label>
+                                    <input type="text" class="form-control" placeholder="ProductName" name="Name"  value="{{data.Name}}"fdprocessedid="okt5rj">
+                                </div><br>
+                                <div class="mb-3">
+                                    <label class="form-label">Price</label>
+                                    <input type="text" class="form-control" placeholder="Price" name="Price"  value="{{data.Price}}"fdprocessedid="okt5rj">
+                                </div><br>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <input type="text" class="form-control" placeholder="Description" name="Description"  value="{{data.Description}}"fdprocessedid="okt5rj">
+                                </div><br>
+                                <div class="mb-3">
+                                    <input class="form-control bg-dark" type="file" placeholder="Image" name="Image" value="{{data.Image.url}}">
+
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary" fdprocessedid="9jguy">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+{% endblock %}

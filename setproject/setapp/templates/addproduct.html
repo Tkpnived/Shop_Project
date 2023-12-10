@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+
+<!--<script>-->
+<!--$(document).ready(function(){-->
+<!--            $("button").click(function(){-->
+<!--Swal.fire(-->
+<!--  'The Internet?',-->
+<!--  'That thing is still around?',-->
+<!--  'question'-->
+<!--)-->
+<!--})-->
+<!--})-->
+
+
+<!--</script>-->
+
+
+</head>
+<body>
+{% extends 'index.html' %}
+{% block content %}
+
+
+
+
+<div class="col-sm-12 col-xl-6" style="margin-left:200px;margin-top:100px;width:900px;">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Basic Form</h6>
+                            <form method="post" action="{% url 'addpro' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <select name="CategoryName" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" fdprocessedid="2c92e5">
+                                <option selected="">Chatagory</option>
+                                    {% for i in data %}
+                                <option>{{i.CategoryName}}</option>
+                                    {% endfor %}
+
+                            </select>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Product Name</label>
+                                    <input type="text" class="form-control" placeholder="ProductName" name="Name" fdprocessedid="okt5rj">
+                                </div><br>
+                                <div class="mb-3">
+                                    <label class="form-label">Price per KG</label>
+                                    <input type="text" class="form-control" placeholder="Price per KG" name="Price" fdprocessedid="okt5rj">
+                                </div><br>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <input type="text" class="form-control" placeholder="Description" name="Description" fdprocessedid="okt5rj">
+                                </div><br>
+                                <div class="mb-3">
+                                    <input class="form-control bg-dark" type="file" placeholder="Image" name="Image">
+
+                                </div>
+                                <br>
+                                <button id="button" type="submit" class="btn btn-primary" fdprocessedid="9jguy">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'warning' %}
+<script>
+    swal('{{message}}','','warning');
+
+</script>
+
+    {% elif message.tags == 'error' %}
+<script>
+    swal('{{message}}','','error');
+
+</script>
+{% else %}
+<script>
+    swal('{{message}}','','success');
+
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+</body>
+</html>
+
+
+
+{% endblock %}
+

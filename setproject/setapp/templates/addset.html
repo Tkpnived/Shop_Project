@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+</head>
+<body>
+{% extends 'index.html' %}
+{% block content %}
+
+
+
+
+<div class="col-sm-12 col-xl-6" style="margin-left:200px;margin-top:100px;width:900px;">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Basic Form</h6>
+                            <form method="post" action="{% url 'setaddfun' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label class="form-label">ChatagoryName</label>
+                                    <input type="text" class="form-control" placeholder="Chatagoryname" name="categoryname" fdprocessedid="55mspe">
+
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <input type="text" class="form-control" placeholder="Description" name="description" fdprocessedid="okt5rj">
+                                </div><br>
+                                <div class="mb-3">
+                                    <input class="form-control bg-dark" type="file" placeholder="Image" name="Image">
+
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-primary" fdprocessedid="9jguy">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == 'warning' %}
+<script>
+    swal('{{message}}','','warning');
+
+</script>
+
+    {% elif message.tags == 'error' %}
+<script>
+    swal('{{message}}','','error');
+
+</script>
+{% else %}
+<script>
+    swal('{{message}}','','success');
+
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+</body>
+</html>
+
+{% endblock %}
